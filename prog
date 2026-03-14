@@ -1,0 +1,42 @@
+#!/usr/bin/env bash
+
+
+get-words(){ #expects input of a number ; number of words
+    words=('pikachu ' 'raichu ' 'Alakazam ')
+    local count=$1
+    s=''
+    for i in $(eval echo {1.."$count"}); do 
+        s+="${words[$(($RANDOM%3))]}"
+    done
+    s+="${words[$(($RANDOM%3))]}"
+    s+=''
+    s+="\r"
+}
+
+play-n-words(){
+
+    get-words $1
+    echo -ne $s
+    length=$((${#s}-3))
+
+    local IncorrectLetter=0
+    for ((i=0;i<$length;));do
+        IFS= read -s -n 1 char
+        if [[ $i -eq 0 ]];then 
+            local StartTime=$(date +"%s")
+        fi
+        if [[ $char == "${s:i:1}" ]];then
+            i=$((i+1))
+        else 
+            IncorrectLetter=$(($IncorrectLetter+1))
+        fi
+        printf "${s:i}"
+    done
+    local time=$(($(date +"%s") - $StartTime))
+    echo "Speed: $((60*$1/$time))WPM"
+    echo "Total Time Taken: $time"
+    echo "Accuracy: $((100*$length/($length+$IncorrectLetter)))%"
+    echo 
+}
+
+play-n-words 3
