@@ -81,8 +81,39 @@ save-your-work
 	then i edited bug.txt
 	git add .
 	git commit -m "Bug fixed"
-	git reset --hard HEAD~1
 	git stash pop
-	then i edited bug.txt again
+	then i edited bug.txt again added the final line
 	git add .
-	git commit -m "i did it "
+	git commit -m "i did it"
+change-branch-history
+	git rebase hot-bugfix change-branch-history
+	#rebase : second parameter gets attached to the first one
+git rm ignored.txt
+	git rm ignored.txt
+	then commit
+case-sensitive-filename
+	git mv File.txt file.txt
+	git commit -m ""
+	git verify 
+fix-typo
+	git reset --soft HEAD~1
+	#modified the file
+	git add .
+	git commit -m "Add Hello world"
+forge-date
+	git log 
+	#there date appears, i can see the date format
+	git commit --amend --date='Sat Mar 14 16:16:19 1987 +0530'
+	git verify
+fix-old-typo
+	git rebase --interactive HEAD~2
+	changed pick to edit for the one that i want to edit
+	edited file 
+	git add .
+	git commit --amend '-S'
+	fixed the title as well
+	git rebase --continue
+	fixed the conflict 
+	git add .
+	git rebase --continue
+	git verify
