@@ -85,4 +85,4 @@ save-your-work
 	git stash pop
 	then i edited bug.txt again
 	git add .
-	git commit -m "i did it 
+	git commit -m "i did it "
